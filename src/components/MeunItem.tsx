@@ -4,9 +4,9 @@ import { Slot } from '@radix-ui/react-slot';
 
 
 export interface MenuItemConteinerProps{
-    children: ReactNode
-    isSelected: boolean;
-    isDark: boolean;
+    children?: ReactNode
+    isSelected?: boolean;
+    isDark?: boolean;
 }
 
 

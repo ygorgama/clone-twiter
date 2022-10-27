@@ -12,6 +12,7 @@ export interface PostProps{
 export interface PostIconsProps{
     src: string
     alt: string
+    className?: string
     method?: () => {}
 }
 
@@ -34,11 +35,11 @@ export function Post(props:PostProps) {
             </div>
             <div className='flex w-full items-center justify-between'>
                 <div>
-                    <PostIcon src='emoji' alt='Emoji' method={props.method}/>
-                    <PostIcon src='gif' alt='Gig'  method={props.method}/>
-                    <PostIcon src='media' alt='Media'  method={props.method}/>
-                    <PostIcon src='poll' alt='Poll'  method={props.method}/>
-                    <PostIcon src='schedule' alt='Escala'  method={props.method}/>
+                    <ButtonIcons src='emoji' alt='Emoji' method={props.method}/>
+                    <ButtonIcons src='gif' alt='Gig'  method={props.method}/>
+                    <ButtonIcons src='media' alt='Media'  method={props.method}/>
+                    <ButtonIcons src='poll' alt='Poll'  method={props.method}/>
+                    <ButtonIcons src='schedule' alt='Escala'  method={props.method}/>
                 </div>
                 <Button className='w-20' children='Tweet'  isPrimary={true} size="md"/>
             </div>
@@ -46,26 +47,14 @@ export function Post(props:PostProps) {
     )
 }
 
-function PostIcon(props:PostIconsProps) {
-
+export function ButtonIcons(props:PostIconsProps) {
+    const classDefine = !props.className ? 'mr-5' : props.className
     return(
         <button onClick={props.method} 
-        className='w-9 h-14 mr-5'>
+        className={`w-9 h-14 ${classDefine}`}>
             <img src={`../../src/assets/${props.src}.svg`} alt={props.alt} />
         </button>
     )
 }
 
 
-            {/* <div className='flex items-center'>
-                <Avatar size='md' src={props.src}/>
-                <p className='text-lg'>What’s happening?</p>
-            </div>
-            <div className='flex w-full items-center' >
-                <PostIcon src='emoji' alt='Emoji' method={props.method}/>
-                <PostIcon src='gif' alt='Gig'  method={props.method}/>
-                <PostIcon src='media' alt='Media'  method={props.method}/>
-                <PostIcon src='poll' alt='Poll'  method={props.method}/>
-                <PostIcon src='schedule' alt='Escala'  method={props.method}/>
-                <Button className='w-5' children='Tweet'  isPrimary={true} size="sm"  method={props.method}/>
-            </div> */}

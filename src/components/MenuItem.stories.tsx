@@ -2,16 +2,17 @@ import { MenuItem, MenuItemConteinerProps } from "./MeunItem";
 import {Meta, StoryObj} from '@storybook/react'
 
 import '../styles/global.css'
+import React from "react";
 
 export default{
     title: 'Components/MenuItem',
     component: MenuItem.root,
     args:{
         children:(
-            <>
+            <React.Fragment>
                 <MenuItem.icon src="../../src/assets/home-default.svg" alt="Home"/>
                 <MenuItem.link children="Home" href="/"/>
-            </>
+            </React.Fragment>
         )
 
     }
