@@ -1,9 +1,7 @@
 import { MenuItem, MenuItemConteinerProps } from "./MeunItem";
 import {Meta, StoryObj} from '@storybook/react'
-import { RiHome7Line } from "react-icons/ri";
-import { RiHome7Fill } from "react-icons/ri";
+
 import '../styles/global.css'
-import React from "react";
 
 export default{
     title: 'Components/MenuItem',

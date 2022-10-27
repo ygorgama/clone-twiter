@@ -3,6 +3,7 @@ module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
     fontSize: {
+      xls: "13px",
       xs: "15px",
       sm: "16px",
       md: "19px",
@@ -28,6 +29,9 @@ module.exports = {
     extend: {
       width: {
         profile: "20%",
+      },
+      borderWidth: {
+        1: "1px",
       },
     },
   },
