@@ -1,0 +1,6 @@
+.search__dark::before {
+  content: url("../../assets/seach-dk.svg");
+  position: absolute;
+  height: 15px;
+  width: 15px;
+}

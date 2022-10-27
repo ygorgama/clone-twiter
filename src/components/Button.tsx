@@ -1,19 +1,17 @@
 import { clsx } from 'clsx';
-import { ReactNode } from 'react';
-import { Slot } from '@radix-ui/react-slot';
 
 export interface ButtonProps{
     size: 'sm' | 'md' |'lg',
-    children: ReactNode,
-    asChild: boolean,
+    children: string,
     isPrimary: boolean
+    method?: () => {}
+    className?: string
 }
 
-export function Button({size = 'lg',isPrimary = true, children, asChild}:ButtonProps) {
-    const Comp = asChild ? Slot : 'button'
+export function Button({size = 'lg',isPrimary = true, children,  method, className}:ButtonProps) {
     return(
-        <Comp className={clsx(
-            'rounded-3xl text-md w-2/6  font-bold	',
+        <button onClick={method} className={clsx(
+            `block rounded-full text-md ${className ? className : 'w-full'}  font-bol`,
             {
                 'bg-primary-blue text-white': isPrimary,
                 'bg-dark-8 text-primary-blue': !isPrimary
@@ -23,8 +21,8 @@ export function Button({size = 'lg',isPrimary = true, children, asChild}:ButtonP
                 'py-3': size === 'md',
                 'px-2': size === 'sm',
             }
-        )}>
+        )} >
             {children} 
-        </Comp>
+        </button>
     )
 }

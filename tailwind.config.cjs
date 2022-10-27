@@ -22,7 +22,7 @@ module.exports = {
         7: "#EBEEF0",
         8: "#F7F9FA",
       },
-
+      transparente: "transparent",
       "primary-blue": "#1DA1F2",
       white: "#FFFFFF",
     },

@@ -8,7 +8,11 @@ export default{
     title: 'Components/Button',
     component: Button,
     args:{
-        children: 'Tweet'
+        children: 'Tweet',
+        isPrimary: true,
+        method: (event:Event) => {
+            
+        }
     }
 } as Meta<ButtonProps>
 
@@ -29,6 +33,13 @@ export const MediumSecondary: StoryObj = {
 }
 
 export const Small: StoryObj = {
+    args:{
+        size: 'sm',
+        isPrimary: true
+    }
+}
+
+export const SmallSencondary: StoryObj = {
     args:{
         size: 'sm',
         isPrimary: false

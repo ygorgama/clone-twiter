@@ -14,7 +14,7 @@ export default{
             </>
         )
     }
-} as Meta<HeaderContainerProps>
+} as Meta<HeaderContainerProps> 
 
 export const Default: StoryObj = {
     
