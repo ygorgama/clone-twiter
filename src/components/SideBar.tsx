@@ -13,7 +13,7 @@ export function SideBar(props: SideBarProps) {
 
 
   return (
-    <div className="h-screen relative">
+    <div className="h-full ">
       <MenuItem.icon isDark={props.isDark} src="twiter" alt="Twiiter"/>
       <MenuItem.root
         children={
@@ -96,7 +96,7 @@ export function SideBar(props: SideBarProps) {
       />
       <Button children="Tweet" size="md" isPrimary={true} className="w-72 mt-4"/>
 
-      <div className="absolute bottom-0">
+      <div className="mt-36">
         <ProfileItems.root isDark={props.isDark}  children={(
           <React.Fragment>
             <ProfileItems.content src="../../src/assets/Profile Picture.svg" name="Davide Biscuso" userName="@biscuttu"/>
