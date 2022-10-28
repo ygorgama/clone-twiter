@@ -6,7 +6,6 @@ import { Avatar } from './Avatar';
 
 export interface ProfileContainerProps{
     children: ReactNode
-    isSelected: boolean;
     isDark: boolean;
 }
 
@@ -25,7 +24,7 @@ export interface ProfileIconProps{
 function ProfileContainer({isDark = false, children}:ProfileContainerProps) {
     return(
         <div className={clsx(
-            'flex items-center text-md font-bold w-profile justify-between',
+            'flex items-center text-md font-bold ',
             {
                 "text-black":  !isDark,
                 "text-white": isDark,
@@ -40,7 +39,7 @@ function ProfileContainer({isDark = false, children}:ProfileContainerProps) {
 
 function MenuIcon(props:ProfileIconProps) {
     return(
-        <Slot className='w-9 h-14 mr-5'>
+        <Slot className='w-9 h-14 ml-9'>
             <img src={ `'../../src/assets/${props.isDark ? "dark-mode-profile-icon.svg" : "default-profile-icon.svg"}`} alt="Icone profile" />
         </Slot>
     )

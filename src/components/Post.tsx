@@ -34,8 +34,8 @@ export function Post(props:PostProps) {
                 </textarea>
             </div>
             <div className='flex w-full items-center justify-between'>
-                <div>
-                    <ButtonIcons src='emoji' alt='Emoji' method={props.method}/>
+                <div >
+                    <ButtonIcons className='ml-16 mr-5'  src='emoji' alt='Emoji' method={props.method}/>
                     <ButtonIcons src='gif' alt='Gig'  method={props.method}/>
                     <ButtonIcons src='media' alt='Media'  method={props.method}/>
                     <ButtonIcons src='poll' alt='Poll'  method={props.method}/>
@@ -51,7 +51,7 @@ export function ButtonIcons(props:PostIconsProps) {
     const classDefine = !props.className ? 'mr-5' : props.className
     return(
         <button onClick={props.method} 
-        className={`w-9 h-14 ${classDefine}`}>
+        className={`h-14 ${classDefine}`}>
             <img src={`../../src/assets/${props.src}.svg`} alt={props.alt} />
         </button>
     )

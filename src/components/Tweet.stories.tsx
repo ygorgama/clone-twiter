@@ -4,7 +4,7 @@ import {Meta, StoryObj} from '@storybook/react'
 import '../styles/global.css'
 
 export default{
-    title: 'Components/Spacer',
+    title: 'Components/Tweet',
     component: TweetInfo,
     args:{
         name: 'Devon Lane',
@@ -20,7 +20,7 @@ export default{
 
 export const Default: StoryObj = {}
 
-export const Medium: StoryObj = {
+export const DarkMode: StoryObj = {
     args:{
         isDark:true
     }

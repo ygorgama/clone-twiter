@@ -10,3 +10,9 @@ export default {
 } as Meta<SideBarProps>
 
 export const Default: StoryObj = {}; 
+
+export const DarkMode: StoryObj = {
+    args:{
+        isDark:true
+    } 
+}; 

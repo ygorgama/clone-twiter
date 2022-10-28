@@ -44,22 +44,22 @@ export interface TweetProps{
                     </div>
                     <div className='flex items-center'>
                         <div className='flex items-center mr-6'>
-                            <ButtonIcons className='mr-0' alt='Like' src='comment' />
+                            <ButtonIcons className='mr-2' alt='Like' src='comment' />
                             <span>61</span>
                         </div>
 
                         <div className='flex items-center mr-6 '>
-                            <ButtonIcons className='mr-0' alt='Like' src='retweet' />
+                            <ButtonIcons className='mr-2' alt='Like' src='retweet' />
 
                             <span >12</span>
                         </div>
                         <div className='flex items-center mr-6'>
-                            <ButtonIcons className='mr-0' alt='Like' src='like' />
+                            <ButtonIcons className='mr-2' alt='Like' src='like' />
                             <span >6.2k</span>
                         </div>
                      
                         <div className='flex items-center'>
-                             <ButtonIcons  alt='Like' src='share' />
+                             <ButtonIcons className='mr-2'  alt='Like' src='share' />
                             <span >61</span>
                         </div>
                     </div>

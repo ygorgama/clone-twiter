@@ -8,10 +8,11 @@ export default{
     title: 'Components/MenuItem',
     component: MenuItem.root,
     args:{
+        isDark: false,
         children:(
             <React.Fragment>
-                <MenuItem.icon src="../../src/assets/home-default.svg" alt="Home"/>
-                <MenuItem.link children="Home" href="/"/>
+                <MenuItem.icon src="home" alt="Home"/>
+                <MenuItem.link  children="Home" href="/"/>
             </React.Fragment>
         )
 
@@ -24,25 +25,27 @@ export const Default: StoryObj = {
 
 export const DarkMode: StoryObj = {
     args:{
-        isDark: true,
+        isDark: false,
         children:(
-            <>
-                <MenuItem.icon src="../../src/assets/home-dark-theme.svg" alt="Home"/>
-                <MenuItem.link children="Home" href="/"/>
-            </>
+            <React.Fragment>
+                <MenuItem.icon isDark={true} src="home" alt="Home"/>
+                <MenuItem.link  children="Home" href="/"/>
+            </React.Fragment>
         )
+
     }
 }
 
 export const Selected: StoryObj = {
     args:{
-        isSelected: true,
-        children: (
-            <>
-            <MenuItem.icon src="../../src/assets/home-select.svg" alt="Home"/>
-            <MenuItem.link children="Home" href="/"/>
-        </>
+        isDark: false,
+        children:(
+            <React.Fragment>
+                <MenuItem.icon isSelected={true} src="home" alt="Home"/>
+                <MenuItem.link  children="Home" href="/"/>
+            </React.Fragment>
         )
+
     }
 }
 

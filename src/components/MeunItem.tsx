@@ -18,7 +18,9 @@ export interface MenuItemProps{
 
 export interface MenuIconProps{
     src: string;
-    alt:string
+    alt:string;
+    isDark?:boolean;
+    isSelected?: boolean;
 }
 
 function MenuItemContainer({isSelected = false, isDark = false, children}:MenuItemConteinerProps) {
@@ -38,9 +40,19 @@ function MenuItemContainer({isSelected = false, isDark = false, children}:MenuIt
 
 
 function MenuIcon(props:MenuIconProps) {
+    let src:string = props.src;
+
+    if (props.isDark && !props.isSelected) {
+        src = src + '-dark';
+    }else if(props.isSelected){
+        src = src+'-select'
+    }else if(src == 'bookmark'){
+         src = props.src
+    }
+
     return(
         <Slot className='w-9 h-14 mr-5'>
-            <img src={props.src} alt={props.alt} />
+            <img src={`../../src/assets/${src}.svg`} alt={props.alt} />
         </Slot>
     )
 }
