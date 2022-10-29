@@ -8,15 +8,14 @@ export interface HeaderContainerProps{
     twetts: string
 }
 
-
 export interface HeaderProfileProps{
     twetts: string
 }
 
 export interface ImageProps{
+    darkModeHanddler?: () => void
     isHome: boolean
 }
-
 
 
 export function HeaderContainer(props:HeaderContainerProps) {
@@ -41,7 +40,7 @@ function Symbol(props:ImageProps) {
         const Comp = props.isHome ? 'button' : 'a'
         return(
         <Slot className='w-9 h-14'>
-            <Comp href="/"><img src={`../../src/assets/${image}`} alt="Icone profile" /></Comp>
+            <Comp onClick={props.darkModeHanddler} href="/"><img src={`../../src/assets/${image}`} alt="Icone profile" /></Comp>
         </Slot>
     )
 }
