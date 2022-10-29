@@ -1,18 +1,14 @@
-import { HeaderItems, HeaderContainerProps } from "./Header";
+import { HeaderContainer, HeaderContainerProps } from "./Header";
 import {Meta, StoryObj} from '@storybook/react'
 import '../styles/global.css'
 
 
 export default{
     title: 'Components/Header',
-    component: HeaderItems.root,
+    component:HeaderContainer,
     args:{
         isDark: false,
-        children:(
-            <>
-                <HeaderItems.home/>
-            </>
-        )
+        isHome: true,
     }
 } as Meta<HeaderContainerProps> 
 
@@ -23,11 +19,7 @@ export const Default: StoryObj = {
 export const Profile: StoryObj = {
     args:{
         isDark: false,
-        children:(
-            <>
-                <HeaderItems.profile twetts="9 tweets"/>
-            </>
-        )
+        isHome: false,
             
     }
 }
@@ -35,11 +27,7 @@ export const Profile: StoryObj = {
 export const HomeDark: StoryObj = {
     args:{
         isDark: true,
-        children:(
-            <>
-                <HeaderItems.home/>
-            </>
-        )
+        isHome: true
             
     }
 }
@@ -48,11 +36,7 @@ export const HomeDark: StoryObj = {
 export const ProfileDark: StoryObj = {
     args:{
         isDark: true,
-        children:(
-            <>
-                <HeaderItems.profile twetts="9 tweets"/>
-            </>
-        )
+        isHome: true
             
     }
 }

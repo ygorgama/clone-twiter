@@ -14,6 +14,7 @@ export interface ProfileUserProps{
     src: string,
     name: string
     userName: string
+    IsMedium?: boolean
 }
 
 export interface ProfileIconProps{
@@ -28,7 +29,6 @@ function ProfileContainer({isDark = false, children}:ProfileContainerProps) {
             {
                 "text-black":  !isDark,
                 "text-white": isDark,
-            
             }
         )}>
             {children}
@@ -49,13 +49,14 @@ function MenuIcon(props:ProfileIconProps) {
 
 
  function ProfileUser(props:ProfileUserProps) {
+    const size = props.IsMedium ? 'md' : 'sm'
     return(
         <React.Fragment>
             <div className='flex items-center'>
-                <Avatar size='sm' src={props.src} />
-                <div className='ml-5'>
-                    <p>{props.name}</p>
-                    <p className='text-dark-6'>{props.userName}</p>
+                <Avatar size={size} src={props.src} />
+                <div className='ml-2'>
+                    <p className='font-bold'>{props.name}</p>
+                    <p className='text-dark-6 text-sm'>{props.userName}</p>
                 </div>
             </div>            
         </React.Fragment>
