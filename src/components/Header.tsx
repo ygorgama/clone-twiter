@@ -6,19 +6,26 @@ export interface HeaderContainerProps{
     isDark: boolean;
     isHome: boolean;
     twetts: string
+    functionHandller?: () => void
 }
 
 export interface HeaderProfileProps{
     twetts: string
+    functionHandller?: () => void
 }
 
+export interface HeaderHomeProps{
+    functionHandller?: () => void
+}
+
+
 export interface ImageProps{
-    darkModeHanddler?: () => void
+    functionHandller?: () => void 
     isHome: boolean
 }
 
-
 export function HeaderContainer(props:HeaderContainerProps) {
+
     return(
         <div className={clsx(
             'flex text-md font-bold w-full  border-b-1 border-dark-6',
@@ -29,7 +36,7 @@ export function HeaderContainer(props:HeaderContainerProps) {
             }
         )}>
             
-            {props.isHome ? <HeaderHome />  : <HeaderProfile twetts={props.twetts} />}
+            {props.isHome ? <HeaderHome functionHandller={props.functionHandller}/>  : <HeaderProfile twetts={props.twetts} />}
         </div>
     )
 }
@@ -40,7 +47,7 @@ function Symbol(props:ImageProps) {
         const Comp = props.isHome ? 'button' : 'a'
         return(
         <Slot className='w-9 h-14'>
-            <Comp onClick={props.darkModeHanddler} href="/"><img src={`../../src/assets/${image}`} alt="Icone profile" /></Comp>
+            <button onClick={props.functionHandller}><img src={`../../src/assets/${image}`} alt="Simbolo" /></button>
         </Slot>
     )
 }
@@ -63,14 +70,14 @@ function Symbol(props:ImageProps) {
 }
 
 
-function HeaderHome() {
+function HeaderHome(props:HeaderHomeProps) {
     return(
         <div className='flex justify-between items-center w-full'>
             <div >
                <p className='text-md'>Home</p>
              </div>
             <div>
-                <Symbol isHome={true}/>
+                <Symbol functionHandller={props.functionHandller}  isHome={true}/>
            </div>
         </div>            
     )

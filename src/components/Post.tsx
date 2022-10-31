@@ -1,60 +1,99 @@
-import { clsx } from 'clsx';
-import { Avatar } from './Avatar';
-import {Button  } from "./Button";
+import { clsx } from "clsx";
+import React, { ChangeEventHandler, FormEvent, useState } from "react";
+import { Avatar } from "./Avatar";
+import { Button } from "./Button";
+import "../../src/styles/Post.module.css";
 
-
-export interface PostProps{
-    src: string,
-    isDark: boolean;
-    method?: () =>{}
+export interface PostProps {
+  src: string;
+  isDark: boolean;
+  changeStateHandller?: () => {};
 }
 
-export interface PostIconsProps{
-    src: string
-    alt: string
-    className?: string
-    method?: () => {}
+export interface PostIconsProps {
+  src: string;
+  type?: string;
+  className?: string;
+  functionHandller?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-
-
-export function Post(props:PostProps) {
-    return(
-        <form>
-            <div className='flex items-center '>
-                <label className='mr-6' htmlFor=""> <Avatar size='md' src={props.src}/></label>
-                <textarea id='inputThink' placeholder='What’s happening?' className={clsx(
-                    'text-md font-bold justify-between w-full bg-transparente',
-                    {
-                        "text-dark-5":  !props.isDark,
-                        "text-dark-6": props.isDark,
-                    }
-
-                )}>
-                </textarea>
-            </div>
-            <div className='flex w-full items-center justify-between'>
-                <div >
-                    <ButtonIcons className='ml-16 mr-5'  src='emoji' alt='Emoji' method={props.method}/>
-                    <ButtonIcons src='gif' alt='Gig'  method={props.method}/>
-                    <ButtonIcons src='media' alt='Media'  method={props.method}/>
-                    <ButtonIcons src='poll' alt='Poll'  method={props.method}/>
-                    <ButtonIcons src='schedule' alt='Escala'  method={props.method}/>
-                </div>
-                <Button className='w-20' children='Tweet'  isPrimary={true} size="md"/>
-            </div>
-        </form>
-    )
+export interface tweet {
+  text: string;
+  image?: string;
 }
 
-export function ButtonIcons(props:PostIconsProps) {
-    const classDefine = !props.className ? 'mr-5' : props.className
-    return(
-        <button onClick={props.method} 
-        className={`h-14 ${classDefine}`}>
-            <img src={`../../src/assets/${props.src}.svg`} alt={props.alt} />
-        </button>
-    )
+export function Post(props: PostProps) {
+  const arrayItens: string[] = [];
+  const [enteredInput, setEnteredInput] = useState<string>("");
+  const [image, setEnteredImage] = useState<string>("");
+  const inputHandller = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setEnteredInput(event.target.value);
+  };
+
+  const imageHandlle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEnteredImage(event.target.value);
+  };
+
+  const submitHandller = (event: FormEvent) => {
+    event.preventDefault();
+
+    if (enteredInput.length > 1 && enteredInput.length <= 350) {
+      if (image.length > 0) {
+      }
+    }
+  };
+  return (
+    <form onSubmit={submitHandller}>
+      <div className="flex items-center bo">
+        <label className="mr-6" htmlFor="">
+          {" "}
+          <Avatar size="md" src={props.src} />
+        </label>
+        <textarea
+          onChange={inputHandller}
+          id="inputThink"
+          placeholder="What’s happening?"
+          className={clsx(
+            "text-md font-bold justify-between w-full bg-transparente mt-5",
+            {
+              "text-dark-5": !props.isDark,
+              "text-dark-6": props.isDark,
+            }
+          )}
+        ></textarea>
+      </div>
+      <div className="flex w-full items-center justify-between">
+        <div className="flex">
+          <ButtonIcons src="emoji" />
+          <ButtonIcons src="gif" />
+          <ButtonIcons
+            src="media"
+            functionHandller={imageHandlle}
+            type="file"
+          />
+          <ButtonIcons src="poll" />
+          <ButtonIcons src="schedule" />
+        </div>
+        <Button className="w-20" children="Tweet" isPrimary={true} size="md" />
+      </div>
+    </form>
+  );
 }
 
-
+export function ButtonIcons(props: PostIconsProps) {
+  const classDefine = !props.className ? "mr-5" : props.className;
+  const type = props.type;
+  return (
+    <label className="mr-4" htmlFor={`input${props.src}`}>
+      <img src={`../../src/assets/${props.src}.svg`} alt="Icone" />
+      <input
+        name={`input${props.src}`}
+        id={`input${props.src}`}
+        accept="image/*"
+        type={type}
+        onChange={props.functionHandller}
+        className="hidden"
+      />
+    </label>
+  );
+}

@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     fontSize: {
       xls: "13px",
-      xss: '14px',
+      xss: "14px",
       xs: "15px",
       sm: "16px",
       md: "19px",
@@ -27,10 +27,11 @@ module.exports = {
       "primary-blue": "#1DA1F2",
       white: "#FFFFFF",
     },
+
     extend: {
       width: {
         profile: "20%",
-        '90': '22rem'
+        90: "22rem",
       },
       borderWidth: {
         1: "1px",

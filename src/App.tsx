@@ -5,37 +5,51 @@ import { Post } from "./components/Post";
 import { Spacer } from "./components/Spacer";
 import { SearchContainer } from "./components/SearchBar";
 import { NewsItems } from "./components/News";
-import React from "react";
+import React, { Dispatch, useState } from "react";
 import { Follow } from "./components/Follow";
 import clsx from "clsx";
 
+
 function App() {
-  let isDark: boolean = false;
-  function changeModeHandller() {
-    isDark = !isDark;
+  interface darkMode{
+    isDark: boolean
   }
+
+  const [darkMode, setDarkMode] = useState<darkMode>(
+    {
+      isDark: false
+    }
+  )
+  
+  const darkModeChange = () =>{
+    setDarkMode(prevState =>({
+      isDark: !prevState.isDark
+    }) )
+  }
+
   return (
 
-      <div className={clsx("App grid grid-cols-3 ", { "bg-dark-1": isDark })}>
+      <div className={clsx("App grid grid-cols-3 ", { "bg-dark-1": darkMode.isDark })}>
         <div className="w-full pl-20">
-          <SideBar isDark={isDark} />
+          <SideBar isDark={darkMode.isDark} />
         </div>
         <div className="w-full">
           <header className="w-full">
             <HeaderContainer
-              isDark={isDark}
+              functionHandller={darkModeChange}            
+              isDark={darkMode.isDark}
               twetts="9"
               isHome={true}
             />
           </header>
-          <Post isDark={isDark} src="../../src/assets/Profile Picture.svg" />
-          <Spacer isDark={isDark} />
+          <Post isDark={darkMode.isDark} src="../../src/assets/Profile Picture.svg" />
+          <Spacer isDark={darkMode.isDark} />
         </div>
         <div className="pt-2 pl-8 w-full">
-          <SearchContainer isDark={isDark} />
+          <SearchContainer isDark={darkMode.isDark} />
           <div className="mt-5">
             <NewsItems.root
-              isDark={isDark}
+              isDark={darkMode.isDark}
               nome="What’s happening"
               children={
                 <React.Fragment>
@@ -67,7 +81,7 @@ function App() {
 
           <div className="mt-5 mb-5">
             <NewsItems.root
-              isDark={isDark}
+              isDark={darkMode.isDark}
               nome="Who to follow"
               children={
                 <React.Fragment>
