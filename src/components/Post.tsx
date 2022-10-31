@@ -3,11 +3,12 @@ import React, { ChangeEventHandler, FormEvent, useState } from "react";
 import { Avatar } from "./Avatar";
 import { Button } from "./Button";
 import "../../src/styles/Post.module.css";
+import { Tweet } from "../App";
 
 export interface PostProps {
   src: string;
   isDark: boolean;
-  changeStateHandller?: () => {};
+  changeArray: (newTweet: Tweet) => void;
 }
 
 export interface PostIconsProps {
@@ -17,13 +18,18 @@ export interface PostIconsProps {
   functionHandller?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+interface sendData {
+  text: string;
+  formData: FormData;
+  imagem: string;
+}
+
 export interface tweet {
   text: string;
   image?: string;
 }
 
 export function Post(props: PostProps) {
-  const arrayItens: string[] = [];
   const [enteredInput, setEnteredInput] = useState<string>("");
   const [image, setEnteredImage] = useState<string>("");
   const inputHandller = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -31,6 +37,16 @@ export function Post(props: PostProps) {
   };
 
   const imageHandlle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const target = event.target;
+    if (target.files) {
+      const file = target.files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener("load", (event) => {
+        const readerTarget = event.target;
+        console.log();
+      });
+    }
     setEnteredImage(event.target.value);
   };
 
@@ -38,8 +54,18 @@ export function Post(props: PostProps) {
     event.preventDefault();
 
     if (enteredInput.length > 1 && enteredInput.length <= 350) {
+      const formData = new FormData();
+      const object: Tweet = {
+        text: enteredInput,
+        data: formData,
+        key: Math.round(Math.random() * 100),
+        image: "",
+      };
       if (image.length > 0) {
+        object.image = image;
       }
+
+      props.changeArray(object);
     }
   };
   return (

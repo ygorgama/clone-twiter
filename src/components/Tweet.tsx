@@ -33,7 +33,7 @@ const Icons = (props: TweetIconsProps) => {
 export function TweetInfo(props: TweetProps) {
   return (
     <div
-      className={clsx("font-medium text-xs border-t-1 border-solid ", {
+      className={clsx("font-medium text-xs border-t-1 border-solid mb-4", {
         "text-black border-dark-7": !props.isDark,
         "text-white border-dark-4": props.isDark,
       })}
@@ -61,7 +61,6 @@ export function TweetInfo(props: TweetProps) {
 
           <div className="flex items-center mr-6 ">
             <Icons alt="Like" src="retweet" />
-
             <span>12</span>
           </div>
           <div className="flex items-center mr-6">

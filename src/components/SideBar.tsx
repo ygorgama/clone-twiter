@@ -1,25 +1,26 @@
 import { MenuItem } from "./MeunItem";
 import React, { useState } from "react";
 import { Button } from "./Button";
-import { ProfileItems} from "./Profile";
-
+import { ProfileItems } from "./Profile";
 
 export interface SideBarProps {
   isDark: boolean;
 }
 
 export function SideBar(props: SideBarProps) {
-
-
-
   return (
-    <div className="h-full ">
-      <MenuItem.icon isDark={props.isDark} src="twiter" alt="Twiiter"/>
+    <div className="fixed h-screen">
+      <MenuItem.icon isDark={props.isDark} src="twiter" alt="Twiiter" />
       <MenuItem.root
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} isSelected={true} src='home' alt="Home" />
-            <MenuItem.link  children="Home" href="/" />
+            <MenuItem.icon
+              isDark={props.isDark}
+              isSelected={true}
+              src="home"
+              alt="Home"
+            />
+            <MenuItem.link children="Home" href="/" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -38,7 +39,11 @@ export function SideBar(props: SideBarProps) {
       <MenuItem.root
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} src="notification" alt="Home" />
+            <MenuItem.icon
+              isDark={props.isDark}
+              src="notification"
+              alt="Home"
+            />
             <MenuItem.link children="Notifications" href="/" />
           </React.Fragment>
         }
@@ -94,15 +99,27 @@ export function SideBar(props: SideBarProps) {
         }
         isDark={props.isDark}
       />
-      <Button children="Tweet" size="md" isPrimary={true} className="w-72 mt-4"/>
+      <Button
+        children="Tweet"
+        size="md"
+        isPrimary={true}
+        className="w-72 mt-4"
+      />
 
-      <div className="mt-36">
-        <ProfileItems.root isDark={props.isDark}  children={(
-          <React.Fragment>
-            <ProfileItems.content src="../../src/assets/Profile Picture.svg" name="Davide Biscuso" userName="@biscuttu"/>
-            <ProfileItems.icon isDark={props.isDark}/>
-          </React.Fragment>
-        )}/>
+      <div className="absolute bottom-0">
+        <ProfileItems.root
+          isDark={props.isDark}
+          children={
+            <React.Fragment>
+              <ProfileItems.content
+                src="../../src/assets/Profile Picture.svg"
+                name="Davide Biscuso"
+                userName="@biscuttu"
+              />
+              <ProfileItems.icon isDark={props.isDark} />
+            </React.Fragment>
+          }
+        />
       </div>
     </div>
   );
