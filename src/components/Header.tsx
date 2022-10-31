@@ -1,35 +1,35 @@
 import { clsx } from 'clsx';
-import React, { ReactNode } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 
 
 export interface HeaderContainerProps{
-    children: ReactNode
     isDark: boolean;
+    isHome: boolean;
+    twetts: string
 }
-
 
 export interface HeaderProfileProps{
     twetts: string
 }
 
 export interface ImageProps{
+    darkModeHanddler?: () => void
     isHome: boolean
 }
 
 
-
-function HeaderContainer(props:HeaderContainerProps) {
+export function HeaderContainer(props:HeaderContainerProps) {
     return(
         <div className={clsx(
-            'flex text-md font-bold w-profile  border-b-1 border-dark-6',
+            'flex text-md font-bold w-full  border-b-1 border-dark-6',
             {
                 "text-black":  !props.isDark,
                 "text-white": props.isDark,
             
             }
         )}>
-            {props.children}
+            
+            {props.isHome ? <HeaderHome />  : <HeaderProfile twetts={props.twetts} />}
         </div>
     )
 }
@@ -40,7 +40,7 @@ function Symbol(props:ImageProps) {
         const Comp = props.isHome ? 'button' : 'a'
         return(
         <Slot className='w-9 h-14'>
-            <Comp href="/"><img src={`../../src/assets/${image}`} alt="Icone profile" /></Comp>
+            <Comp onClick={props.darkModeHanddler} href="/"><img src={`../../src/assets/${image}`} alt="Icone profile" /></Comp>
         </Slot>
     )
 }
@@ -79,8 +79,3 @@ function HeaderHome() {
 
 
 
-export const  HeaderItems = {
-    root: HeaderContainer,
-    profile: HeaderProfile,
-    home:HeaderHome,
-}

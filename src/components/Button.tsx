@@ -4,22 +4,22 @@ export interface ButtonProps{
     size: 'sm' | 'md' |'lg',
     children: string,
     isPrimary: boolean
-    method?: () => {}
+    method?: () => void
     className?: string
 }
 
 export function Button({size = 'lg',isPrimary = true, children,  method, className}:ButtonProps) {
     return(
         <button onClick={method} className={clsx(
-            `block rounded-full text-md ${className ? className : 'w-full'}  font-bol`,
+            `rounded-full text-md ${className ? className : 'w-full'}  font-bold`,
             {
                 'bg-primary-blue text-white': isPrimary,
-                'bg-dark-8 text-primary-blue': !isPrimary
+                'bg-transparente  border-1 border-primary-blue text-primary-blue': !isPrimary
             },
             {
-                'py-5': size === 'lg',
-                'py-3': size === 'md',
-                'px-2': size === 'sm',
+                'h-16': size == 'lg',
+                'h-12': size == 'md',
+                'h-8': size =='sm',
             }
         )} >
             {children} 

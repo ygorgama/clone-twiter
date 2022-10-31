@@ -4,6 +4,7 @@ import { Slot } from '@radix-ui/react-slot';
 
 export interface SeachContainerProps{
     isDark: boolean;
+    className?: string;
 }
 
 
@@ -14,7 +15,7 @@ interface SeachIcon{
 export function SearchContainer(props:SeachContainerProps) {
     return(
         <div className={clsx(
-            'flex items-center py-4 w-full',
+            'flex items-center py-4 w-90 h-10 rounded-full',
             {
                 "text-dark-5 bg-dark-7": !props.isDark,
                 "text-dark-6 bg-dark-3": props.isDark,
