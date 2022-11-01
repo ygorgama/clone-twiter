@@ -36,6 +36,9 @@ module.exports = {
       borderWidth: {
         1: "1px",
       },
+      fontFamily: {
+        sans: "Nunito, sans-serif",
+      },
     },
   },
   plugins: [],

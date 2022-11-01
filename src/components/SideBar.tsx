@@ -106,6 +106,7 @@ export function SideBar(props: SideBarProps) {
         size="md"
         isPrimary={true}
         className="w-72 mt-4"
+        method={() => (location.href = "/404")}
       />
 
       <div className={`absolute ${position}`}>

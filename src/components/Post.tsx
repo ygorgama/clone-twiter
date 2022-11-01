@@ -48,7 +48,6 @@ export function Post(props: PostProps) {
     event.preventDefault();
 
     if (enteredInput.length > 1 && enteredInput.length <= 350) {
-      const formData = new FormData();
       const object: Tweet = {
         text: enteredInput,
         key: Math.round(Math.random() * 100),
@@ -57,16 +56,14 @@ export function Post(props: PostProps) {
       if (image.length > 0) {
         object.image = image;
       }
-      console.log(object);
 
       props.changeArray(object);
     }
   };
   return (
     <form onSubmit={submitHandller}>
-      <div className="flex items-center bo">
+      <div className="flex items-center ">
         <label className="mr-6" htmlFor="">
-          {" "}
           <Avatar size="md" src={props.src} />
         </label>
         <textarea

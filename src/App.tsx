@@ -82,6 +82,26 @@ function App() {
               key={item.key}
             />
           ))}
+          <TweetInfo
+            isDark={darkMode.isDark}
+            content=""
+            time="23s"
+            userName="@biscuttu"
+            name="Davide Biscuso"
+            imageSrc="../src/assets/Placehpolder.png"
+            src="../../src/assets/Profile Picture.svg"
+            key="aloha2"
+          />
+          <TweetInfo
+            isDark={darkMode.isDark}
+            content=""
+            time="23s"
+            userName="@biscuttu"
+            name="Davide Biscuso"
+            imageSrc="../src/assets/Placehpolder.png"
+            src="../../src/assets/Profile Picture.svg"
+            key="aloha"
+          />
         </div>
         <div className="pt-2 pl-8 w-full ">
           <SearchContainer isDark={darkMode.isDark} />
