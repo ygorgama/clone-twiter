@@ -40,14 +40,8 @@ export function Post(props: PostProps) {
     const target = event.target;
     if (target.files) {
       const file = target.files[0];
-      const reader = new FileReader();
-
-      reader.addEventListener("load", (event) => {
-        const readerTarget = event.target;
-        console.log();
-      });
+      setEnteredImage(file.name);
     }
-    setEnteredImage(event.target.value);
   };
 
   const submitHandller = (event: FormEvent) => {
@@ -57,13 +51,13 @@ export function Post(props: PostProps) {
       const formData = new FormData();
       const object: Tweet = {
         text: enteredInput,
-        data: formData,
         key: Math.round(Math.random() * 100),
         image: "",
       };
       if (image.length > 0) {
         object.image = image;
       }
+      console.log(object);
 
       props.changeArray(object);
     }

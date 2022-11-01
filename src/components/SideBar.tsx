@@ -5,9 +5,11 @@ import { ProfileItems } from "./Profile";
 
 export interface SideBarProps {
   isDark: boolean;
+  isZero: boolean;
 }
 
 export function SideBar(props: SideBarProps) {
+  const position = props.isZero ? "bottom-0" : "bottom-20";
   return (
     <div className="fixed h-screen">
       <MenuItem.icon isDark={props.isDark} src="twiter" alt="Twiiter" />
@@ -106,7 +108,7 @@ export function SideBar(props: SideBarProps) {
         className="w-72 mt-4"
       />
 
-      <div className="absolute bottom-0">
+      <div className={`absolute ${position}`}>
         <ProfileItems.root
           isDark={props.isDark}
           children={
