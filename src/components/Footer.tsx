@@ -7,19 +7,19 @@ export function Footer() {
         <h2 className="font-bold text-xlg">Don't Miss What's Whappening</h2>
         <p className="text-xls">People on Twitter are first to know</p>
       </div>
-      <div>
+      <div className="flex">
         <Button
           isPrimary={false}
           children="Log in"
-          size="md"
-          className="bg-white w-20 mr-2"
+          size="sm"
+          className="bg-white w-24 mr-2"
           method={() => (location.href = "/404")}
         ></Button>
         <Button
           isPrimary={false}
           children="Sign Up"
-          size="md"
-          className="bg-white w-24"
+          size="sm"
+          className="bg-white w-36"
           method={() => (location.href = "/404")}
         ></Button>
       </div>

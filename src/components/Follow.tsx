@@ -18,13 +18,7 @@ export function Follow(props: FolowProps) {
         userName={props.userName}
         src={props.src}
       />
-      <Button
-        isPrimary={false}
-        children="Follow"
-        size="sm"
-        className="w-20"
-        method={() => (location.href = "/404")}
-      />
+      <Button isPrimary={false} children="Follow" size="sm" className="w-20" />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React, { ChangeEventHandler, FormEvent, useState } from "react";
 import { Avatar } from "./Avatar";
 import { Button } from "./Button";
 import "../../src/styles/Post.module.css";
-import { Tweet } from "../App";
+import { Tweet } from "./Loged";
 
 export interface PostProps {
   src: string;
@@ -32,6 +32,7 @@ export interface tweet {
 export function Post(props: PostProps) {
   const [enteredInput, setEnteredInput] = useState<string>("");
   const [image, setEnteredImage] = useState<string>("");
+  const [isDisable, setIsDisable] = useState<boolean>(true);
   const inputHandller = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEnteredInput(event.target.value);
   };
@@ -91,7 +92,13 @@ export function Post(props: PostProps) {
           <ButtonIcons src="poll" />
           <ButtonIcons src="schedule" />
         </div>
-        <Button className="w-20" children="Tweet" isPrimary={true} size="md" />
+        <Button
+          className={`w-20 `}
+          children="Tweet"
+          isPrimary={true}
+          size="md"
+          isLink={false}
+        />
       </div>
     </form>
   );

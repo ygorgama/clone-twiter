@@ -1,47 +1,45 @@
 import { Button } from "./Button";
-import {Meta, StoryObj} from '@storybook/react'
+import { Meta, StoryObj } from "@storybook/react";
 import { ButtonProps } from "./Button";
 
-import '../styles/global.css'
+import "../styles/global.css";
 
-export default{
-    title: 'Components/Button',
-    component: Button,
-    args:{
-        children: 'Tweet',
-        isPrimary: true,
-        method: (event:Event) => {
-            
-        }
-    }
-} as Meta<ButtonProps>
+export default {
+  title: "Components/Button",
+  component: Button,
+  args: {
+    size: "lg",
+    children: "Tweet",
+    isPrimary: true,
+  },
+} as Meta<ButtonProps>;
 
-export const Default: StoryObj = {}
+export const Default: StoryObj = {};
 
 export const Medium: StoryObj = {
-    args:{
-        size: 'md',
-        isPrinmary: true
-    }
-}
+  args: {
+    size: "md",
+    isPrinmary: true,
+  },
+};
 
 export const MediumSecondary: StoryObj = {
-    args:{
-        size: 'md',
-        isPrimary: false
-    }
-}
+  args: {
+    size: "md",
+    isPrimary: false,
+  },
+};
 
 export const Small: StoryObj = {
-    args:{
-        size: 'sm',
-        isPrimary: true
-    }
-}
+  args: {
+    size: "sm",
+    isPrimary: true,
+  },
+};
 
 export const SmallSencondary: StoryObj = {
-    args:{
-        size: 'sm',
-        isPrimary: false
-    }
-}
+  args: {
+    size: "sm",
+    isPrimary: false,
+  },
+};

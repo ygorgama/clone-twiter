@@ -32,7 +32,7 @@ export function SideBar(props: SideBarProps) {
         children={
           <React.Fragment>
             <MenuItem.icon isDark={props.isDark} src="explore" alt="Home" />
-            <MenuItem.link children="Explore" href="/" />
+            <MenuItem.link children="Explore" href="/404" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -46,7 +46,7 @@ export function SideBar(props: SideBarProps) {
               src="notification"
               alt="Home"
             />
-            <MenuItem.link children="Notifications" href="/" />
+            <MenuItem.link children="Notifications" href="/404" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -56,7 +56,7 @@ export function SideBar(props: SideBarProps) {
         children={
           <React.Fragment>
             <MenuItem.icon isDark={props.isDark} src="messages" alt="Home" />
-            <MenuItem.link children="Messages" href="/" />
+            <MenuItem.link children="Messages" href="/404" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -66,7 +66,7 @@ export function SideBar(props: SideBarProps) {
         children={
           <React.Fragment>
             <MenuItem.icon isDark={props.isDark} src="bookmark" alt="Home" />
-            <MenuItem.link children="Bookmarks" href="/" />
+            <MenuItem.link children="Bookmarks" href="/404" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -76,7 +76,7 @@ export function SideBar(props: SideBarProps) {
         children={
           <React.Fragment>
             <MenuItem.icon isDark={props.isDark} src="list" alt="Home" />
-            <MenuItem.link children="Lists" href="/" />
+            <MenuItem.link children="Lists" href="/404" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -86,7 +86,7 @@ export function SideBar(props: SideBarProps) {
         children={
           <React.Fragment>
             <MenuItem.icon isDark={props.isDark} src="profile" alt="Home" />
-            <MenuItem.link children="Profile" href="/" />
+            <MenuItem.link children="Profile" href="/profile" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -96,7 +96,7 @@ export function SideBar(props: SideBarProps) {
         children={
           <React.Fragment>
             <MenuItem.icon isDark={props.isDark} src="more" alt="Home" />
-            <MenuItem.link children="More" href="/" />
+            <MenuItem.link children="More" href="/404" />
           </React.Fragment>
         }
         isDark={props.isDark}
@@ -106,7 +106,8 @@ export function SideBar(props: SideBarProps) {
         size="md"
         isPrimary={true}
         className="w-72 mt-4"
-        method={() => (location.href = "/404")}
+        isLink={true}
+        to="/404"
       />
 
       <div className={`absolute ${position}`}>
