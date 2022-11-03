@@ -1,5 +1,6 @@
 import { MenuItem, MenuItemConteinerProps } from "./MeunItem";
 import { Meta, StoryObj } from "@storybook/react";
+import { withRouter } from "storybook-addon-react-router-v6";
 
 import "../styles/global.css";
 import React from "react";
@@ -7,6 +8,12 @@ import React from "react";
 export default {
   title: "Components/MenuItem",
   component: MenuItem.root,
+  decorators: [withRouter],
+  parameters: {
+    reactRouter: {
+      routePath: "/",
+    },
+  },
   args: {
     isDark: false,
     children: (
