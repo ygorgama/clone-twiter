@@ -4,8 +4,9 @@ import { Slot } from "@radix-ui/react-slot";
 import { NavLink } from "react-router-dom";
 
 export interface MenuItemConteinerProps {
-  children?: ReactNode;
+  children: ReactNode;
   isSelected?: boolean;
+  href: string;
   isDark?: boolean;
 }
 
@@ -25,6 +26,7 @@ function MenuItemContainer({
   isSelected = false,
   isDark = false,
   children,
+  href,
 }: MenuItemConteinerProps) {
   return (
     <div
@@ -46,8 +48,6 @@ function MenuIcon(props: MenuIconProps) {
     src = src + "-dark";
   } else if (props.isSelected) {
     src = src + "-select";
-  } else if (src == "bookmark") {
-    src = props.src;
   }
 
   return (
@@ -59,7 +59,7 @@ function MenuIcon(props: MenuIconProps) {
 
 function MenuItemLink({ children, href }: MenuItemProps) {
   return (
-    <NavLink className={clsx("text-md font-bold home__icon")} to={href}>
+    <NavLink className="text-md font-bold home__icon" to={href}>
       {children}
     </NavLink>
   );

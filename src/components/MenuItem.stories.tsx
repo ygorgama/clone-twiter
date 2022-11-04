@@ -18,7 +18,7 @@ export default {
     isDark: false,
     children: (
       <React.Fragment>
-        <MenuItem.icon src="home" alt="Home" />
+        <MenuItem.icon isDark={true} src="home" alt="Home" />
         <MenuItem.link children="Home" href="/" />
       </React.Fragment>
     ),

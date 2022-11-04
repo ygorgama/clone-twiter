@@ -4,10 +4,11 @@ import { Post } from "./Post";
 import { Spacer } from "./Spacer";
 import { SearchContainer } from "./SearchBar";
 import { NewsItems } from "./News";
-import React, { Dispatch, useState } from "react";
+import React, { useState } from "react";
 import { Follow } from "./Follow";
 import clsx from "clsx";
 import { TweetInfo } from "./Tweet";
+import { useLocation, useParams } from "react-router-dom";
 
 interface darkMode {
   isDark: boolean;
@@ -19,7 +20,10 @@ export interface Tweet {
   image?: string;
 }
 
-export function Loged() {
+export function Home() {
+  const path = useLocation();
+  // console.log(path.pathname);
+
   const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
 
   const [darkMode, setDarkMode] = useState<darkMode>({

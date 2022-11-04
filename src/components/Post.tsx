@@ -3,7 +3,7 @@ import React, { ChangeEventHandler, FormEvent, useState } from "react";
 import { Avatar } from "./Avatar";
 import { Button } from "./Button";
 import "../../src/styles/Post.module.css";
-import { Tweet } from "./Loged";
+import { Tweet } from "./Home";
 
 export interface PostProps {
   src: string;
