@@ -5,15 +5,18 @@ export interface TabbarItemProps {
   children: string;
   to: string;
   isActivate: boolean;
-  className?: string;
+  isTabbar?: boolean;
+  isDark?: boolean;
 }
 
 export function TabbarItem(props: TabbarItemProps) {
-  const classNavLink = props.className ? props.className : "text-white";
   return (
     <div
       className={clsx(
         " border-solid w-32 text-center",
+        { "text-white": !props.isTabbar },
+        { "text-dark-5": props.isTabbar && !props.isDark },
+        { "text-dark-6": props.isTabbar && props.isDark },
         { "border-white border-b-1": !props.isActivate },
         { "border-b-primary-blue border-b-2": props.isActivate }
       )}
@@ -21,7 +24,7 @@ export function TabbarItem(props: TabbarItemProps) {
       <NavLink
         className={(navData) => {
           return (
-            `${classNavLink}  text-sm font-bold block mb-2` +
+            `$text-sm font-bold block mb-2` +
             (navData.isActive ? " text-primary-blue" : "")
           );
         }}
