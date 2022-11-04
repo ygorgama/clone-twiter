@@ -33,17 +33,19 @@ export function ProfilePage(props: ProfilePageProps) {
               alt="Avatar"
             />
             <div>
-              <h3 className="text-xlg">{props.name}</h3>
-              <p className="text-sm">@{props.username}</p>
-              <p className="text-sm">{props.workArea}</p>
+              <h3 className="text-xlg font-bold">{props.name}</h3>
+              <p className="text-sm font-medium text-dark-5">
+                @{props.username}
+              </p>
+              <p className="text-sm font-medium">{props.workArea}</p>
               <div
                 className={clsx(
-                  "flex",
+                  "flex mt-2",
                   { "text-dark-5": !props.isDark },
                   { "text-dark-6": props.isDark }
                 )}
               >
-                <div className="flex">
+                <div className="flex mr-4">
                   <span className="mr-2">
                     <img src="../../src/assets/location.svg" alt="location" />{" "}
                   </span>
@@ -60,6 +62,7 @@ export function ProfilePage(props: ProfilePageProps) {
                 <span className="font-bold">569</span>
                 <span
                   className={clsx(
+                    "ml-2 mr-2",
                     { "text-dark-5": !props.isDark },
                     { "text-dark-6": props.isDark }
                   )}
@@ -69,6 +72,7 @@ export function ProfilePage(props: ProfilePageProps) {
                 <span className="font-bold">72</span>
                 <span
                   className={clsx(
+                    "mx-2",
                     { "text-dark-5": !props.isDark },
                     { "text-dark-6": props.isDark }
                   )}
