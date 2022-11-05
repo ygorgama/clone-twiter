@@ -4,11 +4,12 @@ import { Post } from "./Post";
 import { Spacer } from "./Spacer";
 import { SearchContainer } from "./SearchBar";
 import { NewsItems } from "./News";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Follow } from "./Follow";
 import clsx from "clsx";
 import { TweetInfo } from "./Tweet";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { darkContext } from "../store/dark-context";
 
 interface darkMode {
   isDark: boolean;
@@ -23,18 +24,20 @@ export interface Tweet {
 export function Home() {
   const path = useLocation();
   // console.log(path.pathname);
+  const darkModeCtx = useContext(darkContext);
+  const isDark = darkModeCtx.isDark;
 
   const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
 
-  const [darkMode, setDarkMode] = useState<darkMode>({
-    isDark: false,
-  });
+  // const [darkMode, setDarkMode] = useState<darkMode>({
+  //   isDark: false,
+  // });
 
-  const darkModeChange = () => {
-    setDarkMode((prevState) => ({
-      isDark: !prevState.isDark,
-    }));
-  };
+  // const darkModeChange = () => {
+  //   setDarkMode((prevState) => ({
+  //     isDark: !prevState.isDark,
+  //   }));
+  // };
 
   const TweetHandler = (newTweet: Tweet): void => {
     for (const item of arrayTwitte) {
@@ -48,30 +51,30 @@ export function Home() {
   return (
     <div
       className={clsx(" grid grid-cols-3", {
-        "bg-dark-1": darkMode.isDark,
+        "bg-dark-1": isDark,
       })}
     >
       <div className="w-full pl-20 h-full">
-        <SideBar isZero={false} isDark={darkMode.isDark} />
+        <SideBar isZero={false} isDark={isDark} />
       </div>
       <div className="w-full h-full border-x-1 border-dark-7 px-5">
         <div className="w-full">
           <HeaderContainer
-            functionHandller={darkModeChange}
-            isDark={darkMode.isDark}
+            // functionHandller={darkModeChange}
+            isDark={isDark}
             twetts="9"
             isHome={true}
           />
         </div>
         <Post
           changeArray={TweetHandler}
-          isDark={darkMode.isDark}
+          isDark={isDark}
           src="../../src/assets/Profile Picture.svg"
         />
-        <Spacer isDark={darkMode.isDark} />
+        <Spacer isDark={isDark} />
         {arrayTwitte.map((item) => (
           <TweetInfo
-            isDark={darkMode.isDark}
+            isDark={isDark}
             content={item.text}
             time="23s"
             userName="@biscuttu"
@@ -82,7 +85,7 @@ export function Home() {
           />
         ))}
         <TweetInfo
-          isDark={darkMode.isDark}
+          isDark={isDark}
           content=""
           time="23s"
           userName="@biscuttu"
@@ -92,7 +95,7 @@ export function Home() {
           key="aloha2"
         />
         <TweetInfo
-          isDark={darkMode.isDark}
+          isDark={isDark}
           content=""
           time="23s"
           userName="@biscuttu"
@@ -103,10 +106,10 @@ export function Home() {
         />
       </div>
       <div className="pt-2 pl-8 w-full ">
-        <SearchContainer isDark={darkMode.isDark} />
+        <SearchContainer isDark={isDark} />
         <div className="mt-5">
           <NewsItems.root
-            isDark={darkMode.isDark}
+            isDark={isDark}
             nome="What’s happening"
             children={
               <React.Fragment>
@@ -138,7 +141,7 @@ export function Home() {
 
         <div className="mt-5 mb-5">
           <NewsItems.root
-            isDark={darkMode.isDark}
+            isDark={isDark}
             nome="Who to follow"
             children={
               <React.Fragment>

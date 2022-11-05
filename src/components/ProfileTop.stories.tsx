@@ -1,11 +1,11 @@
-import { ProfilePage, ProfilePageProps } from "./ProfilePage";
+import { ProfileTop, ProfilePageProps } from "./ProfileTop";
 import { Meta, StoryObj } from "@storybook/react";
 
 import "../styles/global.css";
 
 export default {
-  title: "Components/ProfilePage",
-  component: ProfilePage,
+  title: "Components/ProfileTop",
+  component: ProfileTop,
   args: {
     avatar: "../../src/assets/Profile Picture.svg",
     isDark: false,
