@@ -1,25 +1,22 @@
 import { clsx } from "clsx";
 import { Slot } from "@radix-ui/react-slot";
 import { NavLink } from "react-router-dom";
+import { darkContext } from "../store/dark-context";
+import { useContext } from "react";
 
 export interface HeaderContainerProps {
   isDark: boolean;
   isHome: boolean;
   twetts: string;
-  functionHandller?: () => void;
 }
 
 export interface HeaderProfileProps {
   twetts: string;
-  functionHandller?: () => void;
 }
 
-export interface HeaderHomeProps {
-  functionHandller?: () => void;
-}
+export interface HeaderHomeProps {}
 
 export interface ImageProps {
-  functionHandller?: () => void;
   isHome: boolean;
   to?: string;
 }
@@ -35,21 +32,19 @@ export function HeaderContainer(props: HeaderContainerProps) {
         }
       )}
     >
-      {props.isHome ? (
-        <HeaderHome functionHandller={props.functionHandller} />
-      ) : (
-        <HeaderProfile twetts={props.twetts} />
-      )}
+      {props.isHome ? <HeaderHome /> : <HeaderProfile twetts={props.twetts} />}
     </div>
   );
 }
 
 function Symbol(props: ImageProps) {
   const image = props.isHome ? "change-mode.svg" : "setinha.svg";
+  const { setIsDark } = useContext(darkContext);
   const Comp = props.isHome ? "button" : NavLink;
+
   return (
     <Slot className="w-9 h-14">
-      <Comp to="/" onClick={props.functionHandller}>
+      <Comp to="/" onClick={setIsDark}>
         <img src={`../../src/assets/${image}`} alt="Simbolo" />
       </Comp>
     </Slot>
@@ -80,7 +75,7 @@ function HeaderHome(props: HeaderHomeProps) {
         <p className="text-md">Home</p>
       </div>
       <div>
-        <Symbol functionHandller={props.functionHandller} isHome={true} />
+        <Symbol isHome={true} />
       </div>
     </div>
   );

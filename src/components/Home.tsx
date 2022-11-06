@@ -23,21 +23,10 @@ export interface Tweet {
 
 export function Home() {
   const path = useLocation();
-  // console.log(path.pathname);
   const darkModeCtx = useContext(darkContext);
   const isDark = darkModeCtx.isDark;
 
   const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
-
-  // const [darkMode, setDarkMode] = useState<darkMode>({
-  //   isDark: false,
-  // });
-
-  // const darkModeChange = () => {
-  //   setDarkMode((prevState) => ({
-  //     isDark: !prevState.isDark,
-  //   }));
-  // };
 
   const TweetHandler = (newTweet: Tweet): void => {
     for (const item of arrayTwitte) {

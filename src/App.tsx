@@ -9,8 +9,16 @@ import { darkContext } from "./store/dark-context";
 
 function App() {
   const [isLoged, setIsLoged] = useState<boolean>(true);
+  const [isDark, setIsDark] = useState<boolean>(false);
+
+  function darkModeHandller() {
+    setIsDark((prevState) => !prevState);
+  }
+
   return (
-    <darkContext.Provider value={{ isDark: false, setIsDark(isDark) {} }}>
+    <darkContext.Provider
+      value={{ isDark: isDark, setIsDark: darkModeHandller }}
+    >
       {isLoged && (
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />

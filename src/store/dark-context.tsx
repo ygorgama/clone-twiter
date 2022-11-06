@@ -2,7 +2,7 @@ import React, { useContext, createContext } from "react";
 
 export interface DarkContext {
   isDark: boolean;
-  setIsDark: (isDark: boolean) => void;
+  setIsDark: () => void;
 }
 
 export const darkContext = createContext<DarkContext>({

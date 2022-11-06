@@ -1,7 +1,7 @@
 import { SideBar } from "./SideBar";
 import clsx from "clsx";
 import { NewsItems } from "./News";
-import React from "react";
+import React, { useContext } from "react";
 import { TweetInfo } from "./Tweet";
 import { HeaderContainer } from "./Header";
 import { Post } from "./Post";
@@ -10,23 +10,27 @@ import { SearchContainer } from "./SearchBar";
 import { Follow } from "./Follow";
 import { Tabbar } from "./Tabbar";
 import { ProfileTop } from "./ProfileTop";
+import { darkContext } from "../store/dark-context";
 
 export function ProfilePage() {
+  const darkModeCtx = useContext(darkContext);
+  const isDark = darkModeCtx.isDark;
+
   return (
     <div
       className={clsx(" grid grid-cols-3", {
-        // "bg-dark-1": darkMode.isDark,
+        "bg-dark-1": isDark,
       })}
     >
       <div className="w-full pl-20 h-full">
-        <SideBar isDark={false} isZero={true} />
+        <SideBar isDark={isDark} isZero={true} />
       </div>
       <div className="w-full h-full border-x-1 border-dark-7 px-5">
         <div className="w-full mb-3">
-          <HeaderContainer isDark={false} twetts="9" isHome={false} />
+          <HeaderContainer isDark={isDark} twetts="9" isHome={false} />
         </div>
         <ProfileTop
-          isDark={false}
+          isDark={isDark}
           avatar="../../src/assets/Profile Picture.svg"
           name="Davide Biscuso"
           username="biscuttu"
@@ -47,7 +51,7 @@ export function ProfilePage() {
           />
         ))} */}
         <TweetInfo
-          isDark={false}
+          isDark={isDark}
           content=""
           time="23s"
           userName="@biscuttu"
@@ -57,7 +61,7 @@ export function ProfilePage() {
           key="aloha2"
         />
         <TweetInfo
-          isDark={false}
+          isDark={isDark}
           content=""
           time="23s"
           userName="@biscuttu"
@@ -68,10 +72,10 @@ export function ProfilePage() {
         />
       </div>
       <div className="pt-2 pl-8 w-full ">
-        <SearchContainer isDark={false} />
+        <SearchContainer isDark={isDark} />
         <div className="mt-5">
           <NewsItems.root
-            isDark={false}
+            isDark={isDark}
             nome="What’s happening"
             children={
               <React.Fragment>
@@ -103,7 +107,7 @@ export function ProfilePage() {
 
         <div className="mt-5 mb-5">
           <NewsItems.root
-            isDark={false}
+            isDark={isDark}
             nome="Who to follow"
             children={
               <React.Fragment>
