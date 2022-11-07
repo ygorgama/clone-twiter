@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 export interface MenuItemConteinerProps {
   children: ReactNode;
   isSelected?: boolean;
-  href: string;
   isDark?: boolean;
 }
 
@@ -26,7 +25,6 @@ function MenuItemContainer({
   isSelected = false,
   isDark = false,
   children,
-  href,
 }: MenuItemConteinerProps) {
   return (
     <div

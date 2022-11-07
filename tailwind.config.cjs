@@ -10,6 +10,8 @@ module.exports = {
       md: "19px",
       lg: "20px",
       xlg: "21px",
+      login: "42px",
+      "login-input": "18px",
     },
     colors: {
       black: "#0F1419",
@@ -32,6 +34,7 @@ module.exports = {
       width: {
         profile: "20%",
         90: "22rem",
+        100: "30rem",
       },
       borderWidth: {
         1: "1px",

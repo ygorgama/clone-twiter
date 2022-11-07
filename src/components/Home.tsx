@@ -18,7 +18,7 @@ interface darkMode {
 export interface Tweet {
   text: string;
   key: number;
-  image?: string;
+  image?: FormData;
 }
 
 export function Home() {
@@ -26,17 +26,8 @@ export function Home() {
   const darkModeCtx = useContext(darkContext);
   const isDark = darkModeCtx.isDark;
 
-  const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
+  // const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
 
-  const TweetHandler = (newTweet: Tweet): void => {
-    for (const item of arrayTwitte) {
-      if (item.key == newTweet.key) {
-        newTweet.key = item.key++;
-      }
-    }
-
-    setArrayTwitte((prevState) => [newTweet, ...prevState]);
-  };
   return (
     <div
       className={clsx(" grid grid-cols-3", {
@@ -55,13 +46,9 @@ export function Home() {
             isHome={true}
           />
         </div>
-        <Post
-          changeArray={TweetHandler}
-          isDark={isDark}
-          src="../../src/assets/Profile Picture.svg"
-        />
+        <Post isDark={isDark} src="../../src/assets/Profile Picture.svg" />
         <Spacer isDark={isDark} />
-        {arrayTwitte.map((item) => (
+        {/* {arrayTwitte.map((item) => (
           <TweetInfo
             isDark={isDark}
             content={item.text}
@@ -72,7 +59,7 @@ export function Home() {
             src="../../src/assets/Profile Picture.svg"
             key={item.key}
           />
-        ))}
+        ))} */}
         <TweetInfo
           isDark={isDark}
           content=""

@@ -4,7 +4,6 @@ import { NewsItems } from "./News";
 import React, { useContext } from "react";
 import { TweetInfo } from "./Tweet";
 import { HeaderContainer } from "./Header";
-import { Post } from "./Post";
 import { Spacer } from "./Spacer";
 import { SearchContainer } from "./SearchBar";
 import { Follow } from "./Follow";
@@ -25,7 +24,7 @@ export function ProfilePage() {
       <div className="w-full pl-20 h-full">
         <SideBar isDark={isDark} isZero={true} />
       </div>
-      <div className="w-full h-full border-x-1 border-dark-7 px-5">
+      <div className="w-full h-full border-x-1 border-dark-7">
         <div className="w-full mb-3">
           <HeaderContainer isDark={isDark} twetts="9" isHome={false} />
         </div>
