@@ -9,7 +9,7 @@ import { darkContext } from "./store/dark-context";
 import { LoginPage } from "./components/LoginPage";
 
 function App() {
-  const [isLoged, setIsLoged] = useState<boolean>(false);
+  const [isLoged, setIsLoged] = useState<boolean>(true);
   const [isDark, setIsDark] = useState<boolean>(false);
 
   function darkModeHandller() {

@@ -6,6 +6,7 @@ import { Tweet } from "./Home";
 import { Axios } from "axios";
 
 export interface PostProps {
+  onChangeArray?: () => void;
   src: string;
   isDark: boolean;
 }
@@ -25,7 +26,7 @@ export interface tweet {
 export function Post(props: PostProps) {
   const [enteredInput, setEnteredInput] = useState<string>("");
   //State do arquvio
-  const [enteredFile, setEnteredFile] = useState<File>();
+  const [enteredUrlImage, setEnteredUrlImage] = useState<string>();
   const inputHandller = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEnteredInput(event.target.value);
   };
@@ -33,8 +34,21 @@ export function Post(props: PostProps) {
   //Setando o state do arquivo
   const imageHandlle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
+
     if (files && files[0]) {
-      setEnteredFile(files[0]);
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        if (e.target) {
+          const readerTarget = e.target;
+          const result = readerTarget.result;
+
+          setEnteredUrlImage(result?.toString());
+        }
+      };
+
+      reader.readAsDataURL(file);
     }
   };
 
@@ -42,17 +56,14 @@ export function Post(props: PostProps) {
     event.preventDefault();
 
     if (enteredInput.length > 1 && enteredInput.length <= 350) {
-      const formData = new FormData();
-
       let object: Tweet;
 
       //Casa o arquivo for diferente de unefined cria um formData
-      if (enteredFile !== undefined) {
-        formData.append("image", enteredFile, enteredFile.name);
+      if (enteredUrlImage) {
         object = {
           text: enteredInput,
           key: Math.round(Math.random() * 100),
-          image: formData,
+          image: enteredUrlImage,
         };
       } else {
         object = {
@@ -72,8 +83,11 @@ export function Post(props: PostProps) {
         const newArray = [object];
         localStorage.setItem("posts", JSON.stringify(newArray));
       }
+
+      setEnteredUrlImage("");
     }
   };
+
   return (
     <form onSubmit={submitHandller}>
       <div className="flex items-center ">
@@ -95,6 +109,7 @@ export function Post(props: PostProps) {
           )}
         ></textarea>
       </div>
+      {enteredUrlImage && <img src={enteredUrlImage} alt="Preview" />}
       <div className="flex w-full items-center justify-between">
         <div className="flex">
           <ButtonIcons src="emoji" />

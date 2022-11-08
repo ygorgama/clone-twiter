@@ -4,21 +4,17 @@ import { Post } from "./Post";
 import { Spacer } from "./Spacer";
 import { SearchContainer } from "./SearchBar";
 import { NewsItems } from "./News";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Follow } from "./Follow";
 import clsx from "clsx";
 import { TweetInfo } from "./Tweet";
 import { useLocation } from "react-router-dom";
 import { darkContext } from "../store/dark-context";
 
-interface darkMode {
-  isDark: boolean;
-}
-
 export interface Tweet {
   text: string;
   key: number;
-  image?: FormData;
+  image?: string;
 }
 
 export function Home() {
@@ -26,7 +22,18 @@ export function Home() {
   const darkModeCtx = useContext(darkContext);
   const isDark = darkModeCtx.isDark;
 
-  // const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
+  const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
+
+  useEffect(() => {
+    const localStorageHandller = () => {
+      const localStorageItens = localStorage.getItem("posts");
+      if (localStorageItens) {
+        const arrayItens: Tweet[] = JSON.parse(localStorageItens);
+        setArrayTwitte(arrayItens);
+      }
+    };
+    localStorageHandller();
+  });
 
   return (
     <div
@@ -39,27 +46,26 @@ export function Home() {
       </div>
       <div className="w-full h-full border-x-1 border-dark-7 px-5">
         <div className="w-full">
-          <HeaderContainer
-            // functionHandller={darkModeChange}
-            isDark={isDark}
-            twetts="9"
-            isHome={true}
-          />
+          <HeaderContainer isDark={isDark} twetts="9" isHome={true} />
         </div>
-        <Post isDark={isDark} src="../../src/assets/Profile Picture.svg" />
+        <Post
+          // onChangeArray={localStorageHandller}
+          isDark={isDark}
+          src="../../src/assets/Profile Picture.svg"
+        />
         <Spacer isDark={isDark} />
-        {/* {arrayTwitte.map((item) => (
+        {arrayTwitte.map((item) => (
           <TweetInfo
             isDark={isDark}
             content={item.text}
             time="23s"
             userName="@biscuttu"
             name="Davide Biscuso"
-            imageSrc={item.image}
             src="../../src/assets/Profile Picture.svg"
             key={item.key}
+            imageSrc={item.image}
           />
-        ))} */}
+        ))}
         <TweetInfo
           isDark={isDark}
           content=""
