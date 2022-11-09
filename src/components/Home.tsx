@@ -13,7 +13,7 @@ import { darkContext } from "../store/dark-context";
 
 export interface Tweet {
   text: string;
-  key: number;
+  key: string;
   image?: string;
 }
 
@@ -33,7 +33,7 @@ export function Home() {
       }
     };
     localStorageHandller();
-  });
+  }, [arrayTwitte]);
 
   return (
     <div
@@ -48,11 +48,7 @@ export function Home() {
         <div className="w-full">
           <HeaderContainer isDark={isDark} twetts="9" isHome={true} />
         </div>
-        <Post
-          // onChangeArray={localStorageHandller}
-          isDark={isDark}
-          src="../../src/assets/Profile Picture.svg"
-        />
+        <Post isDark={isDark} src="../../src/assets/Profile Picture.svg" />
         <Spacer isDark={isDark} />
         {arrayTwitte.map((item) => (
           <TweetInfo

@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import { ButtonIcons } from "./Post";
 import { Avatar } from "./Avatar";
+import { useState } from "react";
 
 export interface TweetProps {
   src: string;
@@ -31,6 +32,19 @@ const Icons = (props: TweetIconsProps) => {
 };
 
 export function TweetInfo(props: TweetProps) {
+  const [likesCount, setLikesCount] = useState<number>(0);
+  const [likeShow, setLikeShow] = useState<string>("not-liked");
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const countHandller = () => {
+    if (isClicked) {
+      setLikesCount((prevState) => prevState - 1);
+      setLikeShow("not-liked");
+    } else {
+      setLikesCount((prevState) => prevState + 1);
+      setLikeShow("like");
+    }
+    setIsClicked((prevState) => !prevState);
+  };
   return (
     <div
       className={clsx("font-medium text-xs border-t-1 border-solid mb-4", {
@@ -64,13 +78,13 @@ export function TweetInfo(props: TweetProps) {
             <span>12</span>
           </div>
           <div className="flex items-center mr-6">
-            <Icons alt="Like" src="like" />
-            <span>6.2k</span>
+            <Icons functionHandller={countHandller} alt="Like" src={likeShow} />
+            <span>{likesCount}</span>
           </div>
 
           <div className="flex items-center">
             <Icons alt="Like" src="share" />
-            <span>61</span>
+            <span>62</span>
           </div>
         </div>
         <a className="text-primary-blue" href="/404">

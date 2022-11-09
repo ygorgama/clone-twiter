@@ -1,17 +1,17 @@
 import { clsx } from "clsx";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export interface MenuItemConteinerProps {
   children: ReactNode;
-  isSelected?: boolean;
+  href: string;
+  src: string;
   isDark?: boolean;
 }
 
 export interface MenuItemProps {
   children: string;
-  href: string;
 }
 
 export interface MenuIconProps {
@@ -22,20 +22,31 @@ export interface MenuIconProps {
 }
 
 function MenuItemContainer({
-  isSelected = false,
   isDark = false,
   children,
+  href,
+  src,
 }: MenuItemConteinerProps) {
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+
+  let retorno: boolean = false;
   return (
-    <div
-      className={clsx("flex items-center", {
-        "text-primary-blue": isSelected,
-        "text-black": !isSelected && !isDark,
-        "text-white": !isSelected && isDark,
-      })}
+    <NavLink
+      to={href}
+      className={(navData) => {
+        return (
+          setIsSelected(navData.isActive),
+          clsx("flex items-center", {
+            "text-primary-blue": navData.isActive,
+            "text-black": !navData.isActive && !isDark,
+            "text-white": !navData.isActive && isDark,
+          })
+        );
+      }}
     >
+      <MenuIcon src={src} isSelected={isSelected} alt="Item" isDark={isDark} />
       {children}
-    </div>
+    </NavLink>
   );
 }
 
@@ -55,12 +66,8 @@ function MenuIcon(props: MenuIconProps) {
   );
 }
 
-function MenuItemLink({ children, href }: MenuItemProps) {
-  return (
-    <NavLink className="text-md font-bold home__icon" to={href}>
-      {children}
-    </NavLink>
-  );
+function MenuItemLink({ children }: MenuItemProps) {
+  return <p className="text-md font-bold home__icon">{children}</p>;
 }
 
 export const MenuItem = {

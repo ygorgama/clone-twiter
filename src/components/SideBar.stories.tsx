@@ -8,7 +8,7 @@ export default {
   decorators: [withRouter],
   parameters: {
     reactRouter: {
-      routePath: "/",
+      routePath: "/home",
     },
   },
   args: {

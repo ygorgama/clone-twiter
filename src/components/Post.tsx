@@ -4,7 +4,7 @@ import { Avatar } from "./Avatar";
 import { Button } from "./Button";
 import { Tweet } from "./Home";
 import { Axios } from "axios";
-
+import uniqid from "uniqid";
 export interface PostProps {
   onChangeArray?: () => void;
   src: string;
@@ -62,13 +62,13 @@ export function Post(props: PostProps) {
       if (enteredUrlImage) {
         object = {
           text: enteredInput,
-          key: Math.round(Math.random() * 100),
+          key: uniqid(),
           image: enteredUrlImage,
         };
       } else {
         object = {
           text: enteredInput,
-          key: Math.round(Math.random() * 100),
+          key: uniqid(),
         };
       }
 
