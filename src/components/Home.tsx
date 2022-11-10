@@ -9,7 +9,7 @@ import { Follow } from "./Follow";
 import clsx from "clsx";
 import { TweetInfo } from "./Tweet";
 import { useLocation } from "react-router-dom";
-import { darkContext } from "../store/dark-context";
+import { darkContext } from "../store/store-context";
 
 export interface Tweet {
   text: string;
@@ -18,23 +18,11 @@ export interface Tweet {
 }
 
 export function Home() {
-  const path = useLocation();
-  const darkModeCtx = useContext(darkContext);
-  const isDark = darkModeCtx.isDark;
-
-  const [arrayTwitte, setArrayTwitte] = useState<Tweet[]>([]);
+  const { isDark, arrayTweets, onLocalStorage } = useContext(darkContext);
 
   useEffect(() => {
-    const localStorageHandller = () => {
-      const localStorageItens = localStorage.getItem("posts");
-      if (localStorageItens) {
-        const arrayItens: Tweet[] = JSON.parse(localStorageItens);
-        setArrayTwitte(arrayItens);
-      }
-    };
-    localStorageHandller();
-  }, [arrayTwitte]);
-
+    onLocalStorage();
+  }, [arrayTweets, onLocalStorage]);
   return (
     <div
       className={clsx(" grid grid-cols-3", {
@@ -50,7 +38,7 @@ export function Home() {
         </div>
         <Post isDark={isDark} src="../../src/assets/Profile Picture.svg" />
         <Spacer isDark={isDark} />
-        {arrayTwitte.map((item) => (
+        {arrayTweets.map((item) => (
           <TweetInfo
             isDark={isDark}
             content={item.text}
@@ -60,6 +48,7 @@ export function Home() {
             src="../../src/assets/Profile Picture.svg"
             key={item.key}
             imageSrc={item.image}
+            id={item.key}
           />
         ))}
         <TweetInfo
@@ -71,6 +60,7 @@ export function Home() {
           imageSrc="../src/assets/Placehpolder.png"
           src="../../src/assets/Profile Picture.svg"
           key="aloha2"
+          id="aloha2"
         />
         <TweetInfo
           isDark={isDark}
@@ -81,6 +71,7 @@ export function Home() {
           imageSrc="../src/assets/Placehpolder.png"
           src="../../src/assets/Profile Picture.svg"
           key="aloha"
+          id="aloha"
         />
       </div>
       <div className="pt-2 pl-8 w-full ">

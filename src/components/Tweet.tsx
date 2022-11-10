@@ -2,6 +2,7 @@ import { clsx } from "clsx";
 import { ButtonIcons } from "./Post";
 import { Avatar } from "./Avatar";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export interface TweetProps {
   src: string;
@@ -9,6 +10,7 @@ export interface TweetProps {
   userName: string;
   isDark: boolean;
   time: string;
+  id: string;
   content: string;
   imageSrc?: string;
 }
@@ -87,9 +89,9 @@ export function TweetInfo(props: TweetProps) {
             <span>62</span>
           </div>
         </div>
-        <a className="text-primary-blue" href="/404">
+        <Link className="text-primary-blue" to={`/profile/${props.id}`}>
           Show this thread
-        </a>
+        </Link>
       </div>
     </div>
   );

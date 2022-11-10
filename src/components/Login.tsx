@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext, useState } from "react";
 import { Button } from "./Button";
 import { MenuItem } from "./MeunItem";
-import { darkContext } from "../store/dark-context";
+import { darkContext } from "../store/store-context";
 import { Modal } from "./Modal";
 import { NavLink, useNavigate } from "react-router-dom";
 

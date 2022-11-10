@@ -1,7 +1,7 @@
 import { SideBar } from "./SideBar";
 import clsx from "clsx";
 import { NewsItems } from "./News";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TweetInfo } from "./Tweet";
 import { HeaderContainer } from "./Header";
 import { Spacer } from "./Spacer";
@@ -9,11 +9,12 @@ import { SearchContainer } from "./SearchBar";
 import { Follow } from "./Follow";
 import { Tabbar } from "./Tabbar";
 import { ProfileTop } from "./ProfileTop";
-import { darkContext } from "../store/dark-context";
+import { darkContext } from "../store/store-context";
+import { Tweet } from "./Home";
+import { Route, Router, Routes } from "react-router-dom";
 
 export function ProfilePage() {
-  const darkModeCtx = useContext(darkContext);
-  const isDark = darkModeCtx.isDark;
+  const { isDark, arrayTweets } = useContext(darkContext);
 
   return (
     <div
@@ -37,29 +38,21 @@ export function ProfilePage() {
         />
         <Tabbar isActive={true} isDark={false} />
         <Spacer isDark={false} />
-        {/* {arrayTwitte.map((item) => (
+        {arrayTweets.map((item) => (
           <TweetInfo
-            isDark={false}
+            isDark={isDark}
             content={item.text}
             time="23s"
             userName="@biscuttu"
             name="Davide Biscuso"
-            imageSrc={item.image}
             src="../../src/assets/Profile Picture.svg"
             key={item.key}
+            imageSrc={item.image}
+            id={item.key}
           />
-        ))} */}
+        ))}
         <TweetInfo
-          isDark={isDark}
-          content=""
-          time="23s"
-          userName="@biscuttu"
-          name="Davide Biscuso"
-          imageSrc="../src/assets/Placehpolder.png"
-          src="../../src/assets/Profile Picture.svg"
-          key="aloha2"
-        />
-        <TweetInfo
+          id="aloha"
           isDark={isDark}
           content=""
           time="23s"
@@ -69,9 +62,40 @@ export function ProfilePage() {
           src="../../src/assets/Profile Picture.svg"
           key="aloha"
         />
+        <TweetInfo
+          id="aloha2"
+          isDark={isDark}
+          content=""
+          time="23s"
+          userName="@biscuttu"
+          name="Davide Biscuso"
+          imageSrc="../src/assets/Placehpolder.png"
+          src="../../src/assets/Profile Picture.svg"
+          key="aloha2"
+        />
       </div>
       <div className="pt-2 pl-8 w-full ">
         <SearchContainer isDark={isDark} />
+        <div className="mt-5 mb-5">
+          <NewsItems.root
+            isDark={isDark}
+            nome="Who to follow"
+            children={
+              <React.Fragment>
+                <Follow
+                  name="Bessie Cooper"
+                  src="../../src/assets/bessie.svg"
+                  userName="@alessandroveronezi"
+                />
+                <Follow
+                  name="Jenny Wilson"
+                  src="../../src/assets/jessie.svg"
+                  userName="@gabrielcantarin"
+                />
+              </React.Fragment>
+            }
+          />
+        </div>
         <div className="mt-5">
           <NewsItems.root
             isDark={isDark}
@@ -98,27 +122,6 @@ export function ProfilePage() {
                   treding="#covid19"
                   texto="India vs Australia: India hold on to earn a draw on Day 5 in Sydney Test"
                   titulo="India"
-                />
-              </React.Fragment>
-            }
-          />
-        </div>
-
-        <div className="mt-5 mb-5">
-          <NewsItems.root
-            isDark={isDark}
-            nome="Who to follow"
-            children={
-              <React.Fragment>
-                <Follow
-                  name="Bessie Cooper"
-                  src="../../src/assets/bessie.svg"
-                  userName="@alessandroveronezi"
-                />
-                <Follow
-                  name="Jenny Wilson"
-                  src="../../src/assets/jessie.svg"
-                  userName="@gabrielcantarin"
                 />
               </React.Fragment>
             }

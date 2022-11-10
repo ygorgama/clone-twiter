@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import { Slot } from "@radix-ui/react-slot";
 import { NavLink } from "react-router-dom";
-import { darkContext } from "../store/dark-context";
+import { darkContext } from "../store/store-context";
 import { useContext } from "react";
 
 export interface HeaderContainerProps {
