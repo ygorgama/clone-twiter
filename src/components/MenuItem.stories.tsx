@@ -15,11 +15,12 @@ export default {
     },
   },
   args: {
+    src: "home",
     isDark: false,
+    href: "/home",
     children: (
       <React.Fragment>
-        <MenuItem.icon src="home" alt="Home" />
-        <MenuItem.link children="Home" href="/" />
+        <MenuItem.link children="Home" />
       </React.Fragment>
     ),
   },
@@ -29,24 +30,28 @@ export const Default: StoryObj = {};
 
 export const DarkMode: StoryObj = {
   args: {
-    isDark: false,
+    isDark: true,
     children: (
       <React.Fragment>
-        <MenuItem.icon isDark={true} src="home" alt="Home" />
-        <MenuItem.link children="Home" href="/" />
+        <MenuItem.link children="Home" />
       </React.Fragment>
     ),
   },
 };
 
 export const Selected: StoryObj = {
+  parameters: {
+    reactRouter: {
+      routePath: "/home",
+    },
+  },
   args: {
     isDark: false,
     isSelected: true,
+
     children: (
       <React.Fragment>
-        <MenuItem.icon isSelected={true} src="home" alt="Home" />
-        <MenuItem.link children="Home" href="/" />
+        <MenuItem.link children="Home" />
       </React.Fragment>
     ),
   },

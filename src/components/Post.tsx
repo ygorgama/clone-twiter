@@ -2,13 +2,13 @@ import { clsx } from "clsx";
 import React, { ChangeEventHandler, FormEvent, useState } from "react";
 import { Avatar } from "./Avatar";
 import { Button } from "./Button";
-import "../../src/styles/Post.module.css";
-import { Tweet } from "./Loged";
-
+import { Tweet } from "./Home";
+import { Axios } from "axios";
+import uniqid from "uniqid";
 export interface PostProps {
+  onChangeArray?: () => void;
   src: string;
   isDark: boolean;
-  changeArray: (newTweet: Tweet) => void;
 }
 
 export interface PostIconsProps {
@@ -18,12 +18,6 @@ export interface PostIconsProps {
   functionHandller?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface sendData {
-  text: string;
-  formData: FormData;
-  imagem: string;
-}
-
 export interface tweet {
   text: string;
   image?: string;
@@ -31,17 +25,30 @@ export interface tweet {
 
 export function Post(props: PostProps) {
   const [enteredInput, setEnteredInput] = useState<string>("");
-  const [image, setEnteredImage] = useState<string>("");
-  const [isDisable, setIsDisable] = useState<boolean>(true);
+  //State do arquvio
+  const [enteredUrlImage, setEnteredUrlImage] = useState<string>();
   const inputHandller = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEnteredInput(event.target.value);
   };
 
+  //Setando o state do arquivo
   const imageHandlle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const target = event.target;
-    if (target.files) {
-      const file = target.files[0];
-      setEnteredImage(file.name);
+    const { files } = event.target;
+
+    if (files && files[0]) {
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        if (e.target) {
+          const readerTarget = e.target;
+          const result = readerTarget.result;
+
+          setEnteredUrlImage(result?.toString());
+        }
+      };
+
+      reader.readAsDataURL(file);
     }
   };
 
@@ -49,18 +56,38 @@ export function Post(props: PostProps) {
     event.preventDefault();
 
     if (enteredInput.length > 1 && enteredInput.length <= 350) {
-      const object: Tweet = {
-        text: enteredInput,
-        key: Math.round(Math.random() * 100),
-        image: "",
-      };
-      if (image.length > 0) {
-        object.image = image;
+      let object: Tweet;
+
+      //Casa o arquivo for diferente de unefined cria um formData
+      if (enteredUrlImage) {
+        object = {
+          text: enteredInput,
+          key: uniqid(),
+          image: enteredUrlImage,
+        };
+      } else {
+        object = {
+          text: enteredInput,
+          key: uniqid(),
+        };
       }
 
-      props.changeArray(object);
+      const localStorageItem = localStorage.getItem("posts");
+
+      //Ver se a localStorage já tem um array
+      if (localStorageItem) {
+        const oldLocalStorageArray = JSON.parse(localStorageItem);
+        const newArray = [object, ...oldLocalStorageArray];
+        localStorage.setItem("posts", JSON.stringify(newArray));
+      } else {
+        const newArray = [object];
+        localStorage.setItem("posts", JSON.stringify(newArray));
+      }
+
+      setEnteredUrlImage("");
     }
   };
+
   return (
     <form onSubmit={submitHandller}>
       <div className="flex items-center ">
@@ -68,11 +95,13 @@ export function Post(props: PostProps) {
           <Avatar size="md" src={props.src} />
         </label>
         <textarea
+          maxLength={350}
+          minLength={1}
           onChange={inputHandller}
           id="inputThink"
           placeholder="What’s happening?"
           className={clsx(
-            "text-md font-bold justify-between w-full bg-transparente mt-5",
+            "text-md font-bold justify-between w-full bg-transparente mt-5 outline-none",
             {
               "text-dark-5": !props.isDark,
               "text-dark-6": props.isDark,
@@ -80,6 +109,7 @@ export function Post(props: PostProps) {
           )}
         ></textarea>
       </div>
+      {enteredUrlImage && <img src={enteredUrlImage} alt="Preview" />}
       <div className="flex w-full items-center justify-between">
         <div className="flex">
           <ButtonIcons src="emoji" />
@@ -93,7 +123,7 @@ export function Post(props: PostProps) {
           <ButtonIcons src="schedule" />
         </div>
         <Button
-          className={`w-20 `}
+          className={`w-24`}
           children="Tweet"
           isPrimary={true}
           size="md"

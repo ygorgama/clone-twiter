@@ -14,89 +14,88 @@ export function SideBar(props: SideBarProps) {
     <div className="fixed h-screen">
       <MenuItem.icon isDark={props.isDark} src="twiter" alt="Twiiter" />
       <MenuItem.root
+        href="/home"
+        src="home"
         children={
           <React.Fragment>
-            <MenuItem.icon
-              isDark={props.isDark}
-              isSelected={true}
-              src="home"
-              alt="Home"
-            />
-            <MenuItem.link children="Home" href="/" />
+            <MenuItem.link children="Home" />
           </React.Fragment>
         }
         isDark={props.isDark}
       />
 
       <MenuItem.root
+        src="explore"
+        href="/404"
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} src="explore" alt="Home" />
-            <MenuItem.link children="Explore" href="/404" />
+            <MenuItem.link children="Explore" />
           </React.Fragment>
         }
         isDark={props.isDark}
       />
 
       <MenuItem.root
+        src="notification"
+        href="/404"
         children={
           <React.Fragment>
-            <MenuItem.icon
-              isDark={props.isDark}
-              src="notification"
-              alt="Home"
-            />
-            <MenuItem.link children="Notifications" href="/404" />
+            <MenuItem.link children="Notifications" />
           </React.Fragment>
         }
         isDark={props.isDark}
       />
 
       <MenuItem.root
+        href="/404"
+        src="messages"
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} src="messages" alt="Home" />
-            <MenuItem.link children="Messages" href="/404" />
+            <MenuItem.link children="Messages" />
           </React.Fragment>
         }
         isDark={props.isDark}
       />
 
       <MenuItem.root
+        href="/404"
+        src="bookmark"
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} src="bookmark" alt="Home" />
-            <MenuItem.link children="Bookmarks" href="/404" />
+            <MenuItem.link children="Bookmarks" />
           </React.Fragment>
         }
         isDark={props.isDark}
       />
 
       <MenuItem.root
+        href="/404"
+        src="list"
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} src="list" alt="Home" />
-            <MenuItem.link children="Lists" href="/404" />
+            <MenuItem.link children="Lists" />
           </React.Fragment>
         }
         isDark={props.isDark}
       />
 
       <MenuItem.root
+        href="/profile"
+        src="/profile"
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} src="profile" alt="Home" />
-            <MenuItem.link children="Profile" href="/profile" />
+            <MenuItem.link children="Profile" />
           </React.Fragment>
         }
         isDark={props.isDark}
       />
 
       <MenuItem.root
+        href="/404"
+        src="more"
         children={
           <React.Fragment>
-            <MenuItem.icon isDark={props.isDark} src="more" alt="Home" />
-            <MenuItem.link children="More" href="/404" />
+            <MenuItem.link children="More" />
           </React.Fragment>
         }
         isDark={props.isDark}

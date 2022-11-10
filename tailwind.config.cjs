@@ -10,6 +10,8 @@ module.exports = {
       md: "19px",
       lg: "20px",
       xlg: "21px",
+      login: "42px",
+      "login-input": "18px",
     },
     colors: {
       black: "#0F1419",
@@ -22,6 +24,7 @@ module.exports = {
         6: "#8899A6",
         7: "#EBEEF0",
         8: "#F7F9FA",
+        bacdrop: " rgba(0, 0, 0, 0.75)",
       },
       transparente: "transparent",
       "primary-blue": "#1DA1F2",
@@ -32,12 +35,23 @@ module.exports = {
       width: {
         profile: "20%",
         90: "22rem",
+        100: "30rem",
+      },
+
+      top: {
+        "15vh": "15vh",
+      },
+      height: {
+        100: "30rem",
       },
       borderWidth: {
         1: "1px",
       },
       fontFamily: {
         sans: "Nunito, sans-serif",
+      },
+      height: {
+        100: "30rem",
       },
     },
   },

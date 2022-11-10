@@ -1,96 +1,131 @@
+import { SideBar } from "./SideBar";
 import clsx from "clsx";
-import { Button } from "./Button";
+import { NewsItems } from "./News";
+import React, { useContext, useEffect, useState } from "react";
+import { TweetInfo } from "./Tweet";
+import { HeaderContainer } from "./Header";
+import { Spacer } from "./Spacer";
+import { SearchContainer } from "./SearchBar";
+import { Follow } from "./Follow";
+import { Tabbar } from "./Tabbar";
+import { ProfileTop } from "./ProfileTop";
+import { darkContext } from "../store/store-context";
+import { Tweet } from "./Home";
+import { Route, Router, Routes } from "react-router-dom";
 
-export interface ProfilePageProps {
-  avatar: string;
-  name: string;
-  username: string;
-  workArea: string;
-  isDark: boolean;
-}
+export function ProfilePage() {
+  const { isDark, arrayTweets } = useContext(darkContext);
 
-export function ProfilePage(props: ProfilePageProps) {
   return (
     <div
-      className={clsx(
-        { "text-black": !props.isDark },
-        { "text-white": props.isDark }
-      )}
+      className={clsx(" grid grid-cols-3", {
+        "bg-dark-1": isDark,
+      })}
     >
-      <div className="w-full">
-        <img
-          className="w-full h-72"
-          src="../../src/assets/imagem-profile.png"
-          alt="Imagem de fundo"
+      <div className="w-full pl-20 h-full">
+        <SideBar isDark={isDark} isZero={true} />
+      </div>
+      <div className="w-full h-full border-x-1 border-dark-7">
+        <div className="w-full mb-3">
+          <HeaderContainer isDark={isDark} twetts="9" isHome={false} />
+        </div>
+        <ProfileTop
+          isDark={isDark}
+          avatar="../../src/assets/Profile Picture.svg"
+          name="Davide Biscuso"
+          username="biscuttu"
+          workArea="Product Designer"
+        />
+        <Tabbar isActive={true} isDark={false} />
+        <Spacer isDark={false} />
+        {arrayTweets.map((item) => (
+          <TweetInfo
+            isDark={isDark}
+            content={item.text}
+            time="23s"
+            userName="@biscuttu"
+            name="Davide Biscuso"
+            src="../../src/assets/Profile Picture.svg"
+            key={item.key}
+            imageSrc={item.image}
+            id={item.key}
+          />
+        ))}
+        <TweetInfo
+          id="aloha"
+          isDark={isDark}
+          content=""
+          time="23s"
+          userName="@biscuttu"
+          name="Davide Biscuso"
+          imageSrc="../src/assets/Placehpolder.png"
+          src="../../src/assets/Profile Picture.svg"
+          key="aloha"
+        />
+        <TweetInfo
+          id="aloha2"
+          isDark={isDark}
+          content=""
+          time="23s"
+          userName="@biscuttu"
+          name="Davide Biscuso"
+          imageSrc="../src/assets/Placehpolder.png"
+          src="../../src/assets/Profile Picture.svg"
+          key="aloha2"
         />
       </div>
-      <div>
-        <div className="flex justify-between mt-4">
-          <div className="relative left-2 -top-40 ">
-            <img
-              className="w-56 rounded-full border-4 border-black border-solid"
-              src={props.avatar}
-              alt="Avatar"
-            />
-            <div>
-              <h3 className="text-xlg font-bold">{props.name}</h3>
-              <p className="text-sm font-medium text-dark-5">
-                @{props.username}
-              </p>
-              <p className="text-sm font-medium">{props.workArea}</p>
-              <div
-                className={clsx(
-                  "flex mt-2",
-                  { "text-dark-5": !props.isDark },
-                  { "text-dark-6": props.isDark }
-                )}
-              >
-                <div className="flex mr-4">
-                  <span className="mr-2">
-                    <img src="../../src/assets/location.svg" alt="location" />{" "}
-                  </span>
-                  <span>London</span>
-                </div>
-                <div className="flex">
-                  <span className="mr-2">
-                    <img src="../../src/assets/calendar.svg" alt="Calendar" />
-                  </span>
-                  <span>Joined September 2011</span>
-                </div>
-              </div>
-              <div>
-                <span className="font-bold">569</span>
-                <span
-                  className={clsx(
-                    "ml-2 mr-2",
-                    { "text-dark-5": !props.isDark },
-                    { "text-dark-6": props.isDark }
-                  )}
-                >
-                  Following
-                </span>
-                <span className="font-bold">72</span>
-                <span
-                  className={clsx(
-                    "mx-2",
-                    { "text-dark-5": !props.isDark },
-                    { "text-dark-6": props.isDark }
-                  )}
-                >
-                  Followers
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <Button
-              className="w-40 relative"
-              children="Edit Profile"
-              size="md"
-              isPrimary={false}
-            />
-          </div>
+      <div className="pt-2 pl-8 w-full ">
+        <SearchContainer isDark={isDark} />
+        <div className="mt-5 mb-5">
+          <NewsItems.root
+            isDark={isDark}
+            nome="Who to follow"
+            children={
+              <React.Fragment>
+                <Follow
+                  name="Bessie Cooper"
+                  src="../../src/assets/bessie.svg"
+                  userName="@alessandroveronezi"
+                />
+                <Follow
+                  name="Jenny Wilson"
+                  src="../../src/assets/jessie.svg"
+                  userName="@gabrielcantarin"
+                />
+              </React.Fragment>
+            }
+          />
+        </div>
+        <div className="mt-5">
+          <NewsItems.root
+            isDark={isDark}
+            nome="What’s happening"
+            children={
+              <React.Fragment>
+                <NewsItems.news
+                  imagem="../../src/assets/imagem-news-3.png"
+                  tempo="Last night"
+                  treding="#covid19"
+                  texto="England’s Chief Medical Officer says the UK is at the most dangerous time of the pandemic"
+                  titulo="COVID19"
+                />
+                <NewsItems.news
+                  imagem="../../src/assets/imagem-news-1.png"
+                  tempo="4h ago"
+                  treding="#trump"
+                  texto="Parler may go offline following suspensions by Amazon, Apple and Google"
+                  titulo="US news"
+                />
+                <NewsItems.news
+                  imagem="../../src/assets/imagem-news-2.png"
+                  tempo="1h ago"
+                  treding="#covid19"
+                  texto="India vs Australia: India hold on to earn a draw on Day 5 in Sydney Test"
+                  titulo="India"
+                />
+              </React.Fragment>
+            }
+          />
         </div>
       </div>
     </div>
